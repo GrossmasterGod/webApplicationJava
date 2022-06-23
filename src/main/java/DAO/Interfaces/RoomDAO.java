@@ -8,5 +8,6 @@ public interface RoomDAO {
     List<Room> getAll();
     List<Room> getAllSortedBy(String sort);
     Room getById(int id);
+    void updateStatusById(int id,String status);
 
 }

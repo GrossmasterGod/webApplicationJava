@@ -9,12 +9,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>MainPage</title>
+
+    <jsp:include page="header.jsp"></jsp:include>
 </head>
 <body>
 
 <h1>Main Page</h1>
-
 <h2>Rooms</h2>
 <h5>Sort by:</h5>
 <a href = "MainPage?action=price">Price</a>
@@ -28,8 +29,6 @@
         <li> Кількість ліжок: <c:out value="${room.quantity}"/></li>
         <li> Категорія: <c:out value="${room.category}"/></li>
         <li> Статус: <c:out value="${room.status}"/></li>
-
-
     </ul>
     <hr />
 </c:forEach>

@@ -110,4 +110,17 @@ public class RoomDAO implements DAO.Interfaces.RoomDAO {
         }
         return room;
     }
+    public void updateStatusById(int id,String status){
+        String updateSql = "UPDATE rooms SET status = ? WHERE id = ?";
+        Connection connection = ConnectionManager.open();
+        try {
+            PreparedStatement statement = connection.prepareStatement(updateSql);
+            statement.setString(1,status);
+            statement.setInt(2,id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

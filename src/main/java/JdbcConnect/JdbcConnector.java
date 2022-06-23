@@ -1,46 +1,30 @@
 package JdbcConnect;
 
+import DAO.Implementation.ApplicationDAO;
+import DAO.Implementation.PaymentDAO;
 import DAO.Implementation.RoomDAO;
+import DAO.Implementation.UserDAO;
+import model.Application;
+import model.Payment;
 import model.Room;
+import model.User;
+import services.ApplicationService;
+import services.PaymentService;
 import services.RoomService;
 import utils.ConnectionManager;
 
 import java.sql.*;
+import java.util.Date;
 import java.util.List;
 
 public class JdbcConnector {
     public static void main(String[] args) throws SQLException {
-        RoomService roomService = new RoomService(new RoomDAO());
-        List<Room> rooms = roomService.getAllSortedBy("status");
-        for (Room room : rooms){
-//            System.out.println(room.getId());
-//            System.out.println(room.getPrice());
-//            System.out.println(room.getQuantity());
-//            System.out.println(room.getCategory());
-            System.out.println(room.getStatus());
-        }
-//        Connection connection = ConnectionManager.open();
-//        UserDAO UserDAO = new UserDAO(connection);
-//        User user1 = new User();
-//        user1.setName("Masha");
-//        user1.setRole("Client");
-//        user1.setLogin("root");
-//        user1.setPassword("password");
-//        System.out.println(UserDAO.create(user1));
-
-//        String sql = "INSERT INTO users (name,role,login,password) VALUES ('Nazar','Client','root','password')";
-//        Connection connection = ConnectionManager.open();
-//        PreparedStatement statement = connection.prepareStatement(sql);
-//        statement.executeUpdate();
-//        statement.setString(1,"Masha");
-//        statement.setString(2,"Client");
-//        statement.setString(3,"root");
-//        statement.setString(4,"password");
-
-//        final ResultSet resultSet = statement.executeQuery();
-//        if (resultSet.next()) {
-//            System.out.println(resultSet.getString("name"));
-//            System.out.println(resultSet.getString("role"));
-//        }
+        PaymentService paymentService = new PaymentService(new PaymentDAO());
+        Payment payment = new Payment();
+        payment.setClientId(2);
+        payment.setRoomId(3);
+        payment.setDate(new Date());
+        payment.setPrice(200);
+        paymentService.addPayment(payment);
     }
 }

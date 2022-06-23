@@ -20,6 +20,7 @@ public class MainPage extends HttpServlet {
 
 
     private static final String MAIN_PAGE = "JSP/mainPage.jsp";
+    private static final String REGISTRATION = "JSP/registration";
 
     public MainPage(){}
 
@@ -29,7 +30,12 @@ public class MainPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         action = request.getParameter("action");
-        request.setAttribute("rooms",roomService.getAllSortedBy(action));
+        if (action.equalsIgnoreCase("price")||action.equalsIgnoreCase("quantity")||
+                action.equalsIgnoreCase("category")||action.equalsIgnoreCase("status")){
+            request.setAttribute("rooms",roomService.getAllSortedBy(action));
+        }else{
+            request.setAttribute("rooms",roomService.getAll());
+        }
         request.getRequestDispatcher(MAIN_PAGE).forward(request,response);
     }
 
@@ -37,16 +43,5 @@ public class MainPage extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-//    private void sortedByPrice(HttpServletRequest request){
-//        request.setAttribute("rooms",roomService.getAll());
-//    }
-//    private void sortedByQuantity(HttpServletRequest request){
-//
-//    }
-//    private void sortedByCategory(HttpServletRequest request){
-//
-//    }
-//    private void sortedByStatus(HttpServletRequest request){
-//
-//    }
+
 }

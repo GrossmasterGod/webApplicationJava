@@ -23,4 +23,7 @@ public class RoomService {
     public Room getById(int id){
         return roomDAO.getById(id);
     }
+    public void updateStatusById(int id,String status){
+        roomDAO.updateStatusById(id,status);
+    }
 }
